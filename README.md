@@ -46,7 +46,7 @@ The data argument can be any JavaScript object and is cloned using the structure
 The targetOrigin argument ensures data is received only by windows from the specified origin, enhancing security for sensitive data exchange.
 Use postMessage for secure cross-window communication in web development.
 
-Day 3
+Day 3: Clickjacking
 Today I learnt about clickjacking:
 Clickjacking is a way to “trick” users into clicking on a victim site without even knowing what’s happening. That’s dangerous if there are important click-activated actions.
 A hacker can post a link to their evil page in a message, or lure visitors to their page by some other means. There are many variations.
@@ -54,7 +54,6 @@ From one perspective – the attack is “not deep”: all a hacker is doing is 
 The attack is quite dangerous, because when we engineer the UI we usually don’t anticipate that a hacker may click on behalf of the visitor. So vulnerabilities can be found in totally unexpected places.
 It is recommended to use X-Frame-Options: SAMEORIGIN on pages (or whole websites) which are not intended to be viewed inside frames.
 Use a covering <div> if we want to allow our pages to be shown in iframes, but still stay safe. To insert a few words of code, use the <code>tag, for several lines – use <pre>, for more than 10 lines – use a sandbox.
-Tomorrow we will be looking more at ArrayBuffer and binary arrays. See you then! 
 
 Day 4: ArrayBuffer and Binary Arrays
 
