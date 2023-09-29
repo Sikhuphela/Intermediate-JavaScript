@@ -10,8 +10,7 @@ Popup Blocked:
 If pop-ups are blocked by the browser settings or in the current context (e.g., if the code is executed without user interaction), the window.open() method may not work, and nothing will happen when you run the code.
 // popup blocked
 window.open('https://javascript.info');popups.
-Popup Allowed:
-If pop-ups are allowed by the browser settings or in the current context (e.g., if the code is executed in response to a user action like clicking a button), the window.open() method will open a new window/tab with the URL 'https://javascript.info'.
+Popup Allowed: If pop-ups are allowed by the browser settings or in the current context (e.g., if the code is executed in response to a user action like clicking a button), the window.open() method will open a new window/tab with the URL 'https://javascript.info'.
 // popup allowed
 button.onclick = () => {
 window.open('https://javascript.info');
