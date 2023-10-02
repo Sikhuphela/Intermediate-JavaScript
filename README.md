@@ -222,3 +222,50 @@ If there's an error during the fetch request (e.g., a network error), we also re
 We then use Promise.all to wait for all the requests to complete. This ensures that the requests run concurrently and don't wait for each other.
 Finally, we return the array of GitHub users (including null values for failed requests) as the result.
 Remember to replace the example githubUsernames array with your desired GitHub logins when calling the getUsers function.
+
+Day 2
+ FormData methods are used to modify fields in a form.
+FormData methods:
+formData.append(name, value) – add a form field with the given name and value,
+formData.append(name, blob, fileName) – add a field as if it were <input type="file">, the third argument fileName sets file name (not form field name), as it it were a name of the file in user’s filesystem,
+formData.delete(name) – remove the field with the given name,
+formData.get(name) – get the value of the field with the given name,
+formData.has(name) – if there exists a field with the given name, returns true, otherwise false
+A form is technically allowed to have many fields with the same name, so multiple calls to append add more same-named fields.
+
+There’s also method set, with the same syntax as append. The difference is that .set removes all fields with the given name, and then appends a new field. So it makes sure there’s only field with such name:
+formData.set(name, value),
+formData.set(name, blob, fileName).
+
+Fetch
+
+The fetch method allows to track download progress.
+To track download progress, we can use response.body property. It’s a ReadableStream – a special object that provides body chunk-by-chunk, as it comes. Readable streams are described in the Streams API specification.
+Unlike response.text(), response.json() and other methods, response.body gives full control over the reading process, and we can count how much is consumed at any moment.
+
+Example
+// instead of response.json() and other methods
+const reader = response.body.getReader();
+
+// infinite loop while the body is downloading
+while(true) {
+// done is true for the last chunk
+// value is Uint8Array of the chunk bytes
+const {done, value} = await reader.read();
+
+if (done) {
+break;
+}
+
+console.log(`Received ${value.length} bytes`)
+}
+The result of await reader.read() call is an object with two properties:
+done – true when the reading is complete, otherwise false.
+value – a typed array of bytes: Uint8Array.
+Sending a form with Blob data
+.servers are usually more suited to accept multipart-encoded forms, rather than raw binary data.
+
+Fetch: Abort
+ AbortController is a simple object that generates an abort event on its signal property when the abort() method is called (and also sets signal.aborted to true).
+fetch integrates with it: we pass the signal property as the option, and then fetch listens to it, so it’s possible to abort the fetch.
+We can use AbortController in our code. The "call abort()"
