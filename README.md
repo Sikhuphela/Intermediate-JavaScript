@@ -72,4 +72,153 @@ BufferSource is an umbrella term for ArrayBuffer or ArrayBufferView.
 
  Day 5
  This is the last day of the week! We had an assessment on week1 of intermediate JavaScript for the following topics: Frames and windows, cross window communication, the clickjacking attack, arraybuffer and binary array.
-The current post section is Week 1.
+End of Week 1 Post section.
+
+    WEEK 2: FILES PATTENS AND FLAGS
+    Day1
+     File and FileReader
+ File constructor
+new File(fileParts, fileName, [options])
+fileParts - is an array of Blob/BufferSource/String values.
+fileName - file name string.
+options - optional object:
+lastModified - the timestamp (integer date) of last modification.
+   FileReader
+FileReader is an object with the sole purpose of reading data from Blob (and hence File too) objects.
+The constructor is as follows:
+let reader = new FileReader(); // no arguments
+The main methods:
+readAsArrayBuffer(blob) – read the data in binary format ArrayBuffer.
+readAsText(blob, [encoding]) – read the data as a text string with the given encoding (utf-8by default).
+readAsDataURL(blob) – read the binary data and encode it as base64 data url.
+abort() – cancel the operation.
+
+Events:
+loadstart – loading started.
+progress – occurs during reading.
+load – no errors, reading complete.
+abort – abort() called.
+error – error has occurred.
+loadend – reading finished with either success or failure.
+When the reading is finished, we can access the result as:
+reader.result is the result (if successful)
+reader.error is the error (if failed).
+
+ FileReader for blobs
+
+As mentioned in the chapter Blob, FileReadercan read not just files, but any blobs.
+We can use it to convert a blob to another format:
+readAsArrayBuffer(blob) – to ArrayBuffer,
+readAsText(blob, [encoding]) – to string (an alternative to TextDecoder),
+readAsDataURL(blob) – to base64 data url.
+FileReaderSyn
+Is available inside Web Workers
+Its reading methods read* do not generate events
+but rather return a result, as regular functions do.
+     Code examples
+// Create a Blob
+const text = "Hello, this is a blob!";
+const blob = new Blob([text], { type: "text/plain" });
+
+// Create a FileReader
+const fileReader = new FileReader();
+
+// Read the Blob as ArrayBuffer
+fileReader.onload = function(event) {
+  const arrayBuffer = event.target.result;
+  console.log("ArrayBuffer:", arrayBuffer);
+};
+fileReader.readAsArrayBuffer(blob);
+
+// Read the Blob as text (UTF-8 encoding)
+fileReader.onload = function(event) {
+  const text = event.target.result;
+  console.log("Text:", text);
+};
+fileReader.readAsText(blob);
+
+// Read the Blob as a Data URL
+fileReader.onload = function(event) {
+  const dataURL = event.target.result;
+  console.log("Data URL:", dataURL);
+};
+fileReader.readAsDataURL(blob);
+
+       Fetch
+ Fetch is the method to send network requests to the server and load new information whenever is needed.
+The basic syntax is:
+let promise = fetch(url, [options])
+url – the URL to access.
+options – optional parameters: method, headers etc.
+
+ Post Requests
+ To make a POST request, or a request with another method, we need to use fetch options:
+method – HTTP-method, e.g. POST,
+body – one of:
+a string (e.g. JSON),
+FormData object, to submit the data as form/multipart,
+Blob/BufferSource to send binary data,
+URLSearchParams, to submit the data in x-www-form-urlencoded encoding, rarely used.
+For example, this code submits.
+
+ Response
+esponse provides multiple promise-based methods to access the body in various formats:
+response.json() – parse the response as JSON object,
+response.text() – return the response as text,
+response.formData() – return the response as FormData object (form/multipart encoding, explained in the next chapter),
+response.blob() – return the response as Blob(binary data with type),
+response.arrayBuffer() – return the response as ArrayBuffer (pure binary data).
+
+ Response properties:
+response.status – HTTP code of the response,
+response.ok – true is the status is 200-299.
+response.headers – Map-like object with HTTP headers.
+Methods to get response body:
+response.json() – parse the response as JSON object,
+response.text() – return the response as text,
+response.formData() – return the response as FormData object (form/multipart encoding, see the next chapter),
+response.blob() – return the response as Blob(binary data with type),
+response.arrayBuffer() – return the response as ArrayBuffer (pure binary data),
+
+Fetch options so far:
+method – HTTP-method,
+headers – an object with request headers (not any header is allowed),
+body – string, FormData, BufferSource, Blob or UrlSearchParams object to send.
+
+fetch users from Github
+ async function getUsers(names) {
+const userPromises = names.map(async (name) => {
+const url = `https://api.github.com/users/${name}`;
+try {
+const response = await fetch(url);
+if (response.ok) {
+const user = await response.json();
+return user;
+} else {
+return null; // Return null if the request fails
+}
+} catch (error) {
+return null; // Return null if there's an error
+}
+});
+
+const users = await Promise.all(userPromises);
+return users;
+}
+
+// Example usage:
+const githubUsernames = ["user1", "user2", "user3"];
+getUsers(githubUsernames)
+.then((result) => {
+console.log(result); // Array of GitHub users or null values
+})
+.catch((error) => {
+console.error(error);
+});
+In this code:
+We create an array of Promise objects (userPromises) by mapping over the names array and making a fetch request for each GitHub username.
+Inside the try block, we check if the response is successful using response.ok. If it is, we parse the JSON response and return the user object. If the request fails, we return null.
+If there's an error during the fetch request (e.g., a network error), we also return null.
+We then use Promise.all to wait for all the requests to complete. This ensures that the requests run concurrently and don't wait for each other.
+Finally, we return the array of GitHub users (including null values for failed requests) as the result.
+Remember to replace the example githubUsernames array with your desired GitHub logins when calling the getUsers function.
