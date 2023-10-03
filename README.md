@@ -269,3 +269,44 @@ Fetch: Abort
  AbortController is a simple object that generates an abort event on its signal property when the abort() method is called (and also sets signal.aborted to true).
 fetch integrates with it: we pass the signal property as the option, and then fetch listens to it, so it’s possible to abort the fetch.
 We can use AbortController in our code. The "call abort()"
+
+Day 3 Fetch: Cross Origin Request
+
+Cross-Origin Requests (CORS):
+
+CORS is a security feature implemented by web browsers to control and restrict web page requests made to different domains or origins.
+Same-Origin Policy (SOP) is the default behavior that restricts web pages from making requests to domains different from the one serving the web page.
+CORS is essential for security, preventing malicious websites from making unauthorized requests and allowing legitimate websites to request and share resources with different origins securely.
+Simple Requests vs. Non-Simple Requests:
+
+Cross-origin requests can be categorized into two types: "Simple Requests" and "Non-Simple Requests."
+Simple requests meet specific conditions, including using common HTTP methods (GET, POST, or HEAD) and having limited allowable headers.
+Non-simple requests include non-standard methods (e.g., PUT, DELETE) or custom headers like API-Key, which do not fit the limitations of simple requests.
+Non-simple requests trigger a preflight request (OPTIONS method) to seek permission from the server before the actual request is sent.
+CORS for Simple Requests:
+
+When a request is cross-origin, the browser automatically includes an Origin header in the request, specifying the origin of the requesting page.
+The server receiving the request can inspect the Origin header and respond with the Access-Control-Allow-Origin header, specifying the allowed origin.
+The browser acts as a mediator, ensuring the presence of the correct headers for secure cross-origin requests.
+Response Headers:
+
+JavaScript is, by default, only allowed to access a limited set of response headers known as "simple response headers."
+Simple response headers include Cache-Control, Content-Language, Content-Type, Expires, Last-Modified, and Pragma.
+The Content-Length header is not included in simple response headers.
+To grant JavaScript access to other response headers, the server must list them in the Access-Control-Expose-Headers response header.
+CORS for Non-Simple Requests:
+
+Non-simple requests, which include non-standard methods and custom headers, trigger a preflight request (OPTIONS method) to the server.
+The preflight request includes headers like Access-Control-Request-Method and Access-Control-Request-Headers.
+The server should respond with headers like Access-Control-Allow-Methods, Access-Control-Allow-Headers, and Access-Control-Max-Age if it grants permission.
+The browser ensures that these headers are present and match the requesting origin before allowing the actual request.
+Credentials and Origin:
+
+Cross-origin requests made by JavaScript do not send credentials (cookies or HTTP authentication) by default, enhancing security.
+Servers must explicitly allow requests with credentials by adding the header Access-Control-Allow-Credentials: true.
+To send credentials, the fetch request should include credentials: "include," and the response must specify the exact trusted origin.
+The Origin header is crucial for cross-origin requests, as it reliably identifies the origin, unlike the Referer header.
+Fetch API:
+
+The Fetch API offers various options for customizing HTTP requests, including referrer, referrerPolicy, mode, credentials, cache, redirect, integrity, and keepalive.
+These options provide fine-grained control over various aspects of HTTP requests and responses, enhancing security and customization.
