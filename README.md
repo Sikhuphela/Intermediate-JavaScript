@@ -310,3 +310,142 @@ Fetch API:
 
 The Fetch API offers various options for customizing HTTP requests, including referrer, referrerPolicy, mode, credentials, cache, redirect, integrity, and keepalive.
 These options provide fine-grained control over various aspects of HTTP requests and responses, enhancing security and customization.
+
+Day 4: Patterns and Flags
+
+ Patterns and Flags
+A regular expression (also “regexp”, or just “reg”) consists of a pattern and optional flags.
+There are two syntaxes to create a regular expression object.
+
+The long syntax:
+regexp = new RegExp("pattern", "flags");
+
+…And the short one, using slashes "/":
+regexp = /pattern/; // no flags
+regexp = /pattern/gmi; // with flags g,m and i (to be covered soon).
+
+Patterns and Flags
+ A regular expression (also “regexp”, or just “reg”) consists of a pattern and optional flags.
+There are two syntaxes to create a regular expression object.
+The long syntax:
+regexp = new RegExp("pattern", "flags");
+…And the short one, using slashes "/":
+regexp = /pattern/; // no flags
+regexp = /pattern/gmi; // with flags g,m and i (to be covered soon). 
+
+    Usage
+ To search for a pattern within a string, the search method can be used.
+The search method takes a regular expression as an argument and returns the position of the first occurrence of the pattern in the string.
+In the example, str.search(regexp) searches for the /love/ pattern in the string str and returns the position 2.
+Simple substring searches can also be performed without regular expressions, like searching for the substring "love" directly.
+Using new RegExp() allows for dynamic construction of regular expressions from strings, making it more flexible when patterns need to be generated dynamically.
+
+ Flags: 
+i: Case-insensitive search. It makes the search treat uppercase and lowercase characters as equivalent. For example, /LOVE/i would match both "love" and "LOVE."
+g: Global search. This flag searches for all matches in the input string. Without it, only the first match is found.
+m: Multiline mode. This flag changes how the ^ and $ anchors work, allowing them to match the start and end of individual lines in a multiline string.
+s: Dotall mode. This flag allows the . metacharacter to match newline characters (\n), making it useful for matching across multiple lines.
+u: Unicode mode. This flag enables full Unicode support, including the correct processing of surrogate pairs. It is essential for working with non-ASCII characters.
+y: Sticky mode. This flag affects the behavior of the exec and test methods, making them start searching from the last matched position in the string.
+
+example: i flag
+
+let str = "I love JavaScript!";
+alert( str.search(/LOVE/i) ); // 2 (found lowercased)
+alert( str.search(/LOVE/) ); // -1 (nothing found without 'i' flag)
+
+   Methods of RegExp and String
+ str.match(regexp) finds all matches of regexp in the string str.
+With the g flag in regexp, it returns an array of all matches.
+Without the g flag, it returns an array with the first match at index 0.
+If there are no matches, it returns null.
+str.replace(regexp, replacement) replaces matches found using regexp in the string str with the replacement string.
+Without the g flag, it replaces only the first match.
+With the g flag, it replaces all matches.
+Special character combinations in the replacement string allow you to insert fragments of the match.
+regexp.test(str) checks if at least one match exists in the string str and returns true if found, otherwise false.
+
+    Character classes
+ Character classes in regular expressions are a special notation to match any symbol from a certain set.
+\d matches any single digit (0-9).
+\s matches any space symbol, including spaces, tabs, and newlines.
+\w matches a "wordly" character, which includes English alphabet letters, digits, and underscores. It does not include non-Latin letters.
+Regular expressions can contain a combination of regular symbols and character classes.
+Character classes are enclosed in backslashes, e.g., \d for digits.
+Using the g flag allows regular expressions to find all matches in a string.
+Character classes can be used in combination with other regular expression patterns to match specific patterns within a text.
+
+      Word boundary \b
+ \b is a special character class in regular expressions that represents a word boundary.
+A word boundary is not a character itself but rather a boundary between characters.
+\bJava\b would match "Java" in the string "Hello, Java!" but not in "Hello, JavaScript!" because it checks for word boundaries.
+Word boundaries are tested in three scenarios:
+Before a word character \w and immediately after a non-word character, or vice versa.
+At the start of the string if the first character is a word character.
+At the end of the string if the last character is a word character.
+\b is often used to find standalone words in a text, ignoring instances where the word is part of a larger word (e.g., matching "Java" but not "JavaScript").
+Word boundaries are based on the \w character class, which represents English letters, digits, and underscores. They may not work correctly for non-Latin alphabets.
+Unicode character classes can be used to handle word boundaries in different languages.
+
+      Inverse Classes
+ character classes in regular expressions are as \D, \S, \W, and \B, match characters that are not in the specified character class.
+
+Example:
+let str = "+7(903)-123-45-67";
+alert( str.replace(/\D/g, "") ); // 79031234567
+
+     Spaces are regular characters
+ space is a character. Equal in importance with any other character.
+Extra spaces (just like any other extra characters) may prevent a match:
+alert( "1-5".match(/\d - \d/) ); // null, because the string 1-5 has no spaces
+
+          example:
+Here we fix it by adding spaces into the regexp \d - \d:
+alert( "1 - 5".match(/\d - \d/) ); // 1 - 5, now it works
+Daily Notes - A dot is any character
+ The dot "." is a special character class that matches “any character except a newline”. It means “any character”, but not the “absence of a character”.
+
+Example:
+1. alert( "CS-4".match(reg) ); // CS-4
+2. alert( "CS 4".match(reg) ); // CS 4 (space is also a character).
+3. alert( "CS4".match(/CS.4/) ); // null, no match because there's no character for the dot.
+Daily Notes - The dotall “s” flag
+ s flag in regular expressions affects the behavior of the dot . character, making it match any character, including newline characters. Additionally, you've mentioned several commonly used character classes like \d, \D, \s, \S, \w, and \W, along with their inverse classes.
+
+Unicode properties in regex patterns, such as matching characters based on their script or category. For example, \p{Script=Cyrillic} would match Cyrillic letters.
+Daily Notes - Activity 1 - Find the Time
+ let time = "09:00";
+let regexp = /^\d\d:\d\d/;
+console.log(time.match(regexp));
+
+Code Explanation: 
+The time variable should be assigned a string value, so I enclosed it in double quotes: "09:00".
+The regular expression should be defined correctly using the RegExp constructor. The pattern should be enclosed in / characters, and you should use backslashes (\) to escape special characters.
+The regular expression pattern /^\d\d:\d\d/ matches the "hours:minutes" format correctly. The ^ indicates the start of the string, \d matches digits, and : is matched literally.
+
+Escaping, Special character
+ To match a literal dot (.), you need to escape it with a backslash (\.).
+ 
+Example: 
+/\d\.\d/ matches the pattern "digit dot digit," like "5.1," but not "511."
+To match literal parentheses (( or )), you should escape them with a backslash.
+
+Example:
+/g\(\)/ matches the pattern "g()," as in "function g()".
+To match a literal backslash (\), you should double it to escape it properly within a string.
+
+Example: 
+/1\\2/ matches the pattern "1\2."
+To match a literal slash (/) when using /.../ notation for regular expressions, you should escape it with a backslash.
+
+Example: 
+/\// matches the pattern "/" in the string.
+When creating regular expressions with the new RegExp constructor, you also need to escape backslashes properly in the string you provide. Use double backslashes to ensure they are interpreted correctly within the regular expression.
+
+Example: let regStr = "\\d\\.\\d"; creates a string with the pattern "\d.\d," and then new RegExp(regStr) creates a regular expression with that pattern.
+example:
+let regStr = "\\d\\.\\d"; // Escaped backslashes
+let reg = new RegExp(regStr);
+console.log("Chapter 5.1".match(reg)); // Matches "5.1"
+
+END OF DAY 4
