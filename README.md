@@ -449,3 +449,51 @@ let reg = new RegExp(regStr);
 console.log("Chapter 5.1".match(reg)); // Matches "5.1"
 
 END OF DAY 4
+
+
+ Day 5: Presentation Day 
+ Summary notes for week two  
+ 
+ Day 1: File and FileReader
+
+Introduced the File constructor for creating file objects.
+Explained the FileReader object and its constructor.
+Detailed the main methods of FileReader for reading data from Blob and File objects.
+Covered the events associated with FileReader.
+Mentioned the availability of FileReader in Web Workers and its reading methods.
+Provided code examples for working with File and FileReader.
+Introduced the fetch method for making network requests and sending data.
+Explained POST requests with fetch and the use of the method and body options.
+Discussed response handling with the Response object, including methods for parsing various data formats.
+Summarized the fetch options for method, headers, and body.
+Provided an example of using fetch to retrieve user data from GitHub.
+
+Day 2: FormData
+Covered various methods of the FormData object for modifying form fields.
+Explained the usage of FormData.append(), FormData.delete(), FormData.get(), and FormData.has().
+Mentioned the set method of FormData for setting fields.
+Explained how to send form data with blob data.
+Introduced the concept of an AbortController for aborting fetch requests.
+
+Day 3: Fetch - Cross-Origin Request
+Discussed Cross-Origin Requests (CORS) and Same-Origin Policy (SOP).
+Differentiated between Simple and Non-Simple Requests in CORS.
+Explained how CORS works, including the role of the Origin header.
+Covered response headers and the handling of credentials in CORS.
+Introduced the Fetch API and its options for customizing HTTP requests.
+
+Day 4: Regular Expressions
+Explained the syntax for creating regular expressions with the RegExp constructor and slashes.
+Detailed the usage of regular expressions for searching, matching, and replacing patterns in strings.
+Covered commonly used flags like i, g, m, s, and u and their functions.
+Introduced the y flag for sticky mode.
+Discussed character classes like \d, \s, \w, and their inverse classes.
+Explained word boundaries with \b.
+Mentioned the use of the dot . to match any character.
+Introduced the s flag for dotall mode.
+Covered escaping special characters like ., (, ), and backslashes.
+Provided an example of using regular expressions to match specific patterns in strings.
+Mentioned Unicode properties in regex patterns.
+
+------ END OF WEEK 2
+
