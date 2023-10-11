@@ -497,3 +497,123 @@ Mentioned Unicode properties in regex patterns.
 
 ------ END OF WEEK 2
 
+WEEK 3: NODE JS
+DAY 1 : INTRODUCTION TO NODE JS
+
+Introduction to Node Js
+Introduction to Node.js: Node.js is an asynchronous event-driven JavaScript runtime designed for building scalable network applications. It is particularly well-suited for handling multiple connections concurrently.
+
+Concurrency Model: Node.js uses a non-blocking, event-driven concurrency model, which is different from the thread-based model used by many other systems. This design eliminates concerns about deadlocks and simplifies the development of scalable systems.
+
+Event Loop: Node.js features an event loop as a runtime construct. It automatically enters the event loop after executing the input script and exits when there are no more callbacks to perform. This event loop is a core part of Node.js's asynchronous and non-blocking behavior.
+
+HTTP in Node.js: Node.js treats HTTP as a first-class citizen, making it suitable for building web libraries or frameworks with streaming and low-latency capabilities in mind. It is often used for creating server-side applications and APIs.
+
+Utilizing Multiple Cores: Although Node.js does not use traditional threads, it supports leveraging the power of multiple CPU cores through features such as child processes and the cluster module for load balancing. This allows Node.js applications to take advantage of modern, multi-core CPUs.
+
+ECMAScript 2015 and Beyond: Node.js is built on top of modern versions of the V8 JavaScript engine, ensuring timely support for new features and improvements from the ECMAScript specification. This provides both better performance and stability.
+
+ECMAScript Feature Groups: ECMAScript 2015 (ES6) features are categorized into different groups, including "shipping," "staged," and "in-progress." Activation of these features in Node.js may vary and is typically determined by the language specification and the Node.js team.
+
+Node.js Feature Availability: The notes mention a website called "node.green," which serves as a resource for information on supported ECMAScript features in various Node.js versions. It helps developers understand which JavaScript features are available in their Node.js environment.
+How to Install Node.js and NPM on Windows
+Downloading Node.js and NPM:
+1.	Go to the official Node.js website at https://nodejs.org/en/download/.
+2.	On the download page, choose the LTS (Long Term Support) version for stability.
+3.	Download the installer for your system architecture (32-bit or 64-bit).
+Running the Installer:
+4.	Locate the downloaded .msi installer file (e.g., node-vxx.x.x-x86.msi for 32-bit).
+5.	Double-click the installer file to run it.
+Node.js Installation Wizard:
+6.	Click the "Run" button in the first screen of the Installation Wizard.
+License Agreement:
+7.	Read and accept the Node.js license agreement by checking the "I accept the terms in the License Agreement" checkbox.
+Destination Folder:
+8.	Choose the installation location for Node.js (the default location is usually suitable).
+Select Components:
+9.	Keep the default options selected, which include Node.js and npm (Node Package Manager).
+Start Menu Folder:
+10.	Choose a Start Menu folder for creating shortcuts to Node.js (the default folder is sufficient).
+Custom Setup (Optional):
+11.	If needed, you can click the "Custom" button to configure advanced settings. However, the default settings are suitable for most users.
+Ready to Install:
+12.	Review the installation settings and click the "Install" button to begin the installation.
+Installation Progress:
+13.	The installer will copy the necessary files and install Node.js and npm on your system, displaying a progress bar.
+Installation Completed:
+14.	Once the installation is complete, you'll see a "Completed" message, indicating that Node.js and npm are installed on your Windows system.
+Verification:
+15.	Open the Command Prompt or PowerShell.
+16.	Use the following commands to verify the installed versions:
+•	node -v (to check the Node.js version)
+•	npm -v (to check the npm version)
+17.	You should see the versions of Node.js and npm displayed in the terminal, confirming the successful installation.
+By following these steps, you can install Node.js and npm on your Windows system, allowing you to develop and run JavaScript applications and manage packages effectively.
+You should see the versions of Node.js and npm displayed in the terminal, confirming that the installation was successful.
+
+--- END OF DAY 1
+
+  DAY 2: NODE JS LIBRARY 
+  
+Fun and Games with Node.js
+
+Node.js is a versatile platform for creating various games and interactive applications. Here are some key points:
+
+Text-Based Games: Node.js is suitable for creating text-based games like quizzes or adventures. It can handle user input/output using libraries like readline.
+
+Multiplayer Games: Real-time multiplayer games can be developed using libraries like Socket.io. These games can include card games, board games, or shooters.
+
+Web-Based Games: Node.js can be used to create web-based games by combining HTML5 canvas and JavaScript. Libraries like Phaser can be integrated for game development.
+
+Trivia Quiz Games: Node.js can handle real-time aspects of online trivia quiz games, such as tracking scores and notifying players.
+
+Chat Games: Chat-based games, where players interact with bots or each other to solve puzzles or riddles, can be built using Node.js with frameworks like Botkit.
+
+Board Games: Classic board games like chess or tic-tac-toe can be developed with multiplayer features, and Node.js can manage game state and player interactions.
+
+Text-Based RPGs: Text-based role-playing games allow players to create characters, go on quests, and interact with an in-game world. Node.js handles game logic and database interactions.
+
+Simulation Games: Simulation games, such as city-building or farming simulators, can be created using Node.js for backend simulation and user interactions.
+
+Card Games: Node.js can manage the game rules and communication between players for card games like poker or blackjack.
+
+Augmented Reality (AR) Games: Combining Node.js with AR libraries like AR.js enables the development of interactive AR games that can be played in web browsers.
+
+AI-Driven Games: Node.js can manage AI logic and facilitate player interactions in games where AI plays against human players.
+
+Mini-Games for Websites: Add simple mini-games like quizzes or puzzles to websites using Node.js to engage visitors.
+
+Node.js is an asynchronous, event-driven JavaScript runtime primarily designed for building scalable network applications. Here are the key points:
+
+Concurrency Model: Node.js uses a non-blocking, event-driven concurrency model, which is different from the traditional thread-based model. This design simplifies the development of scalable systems and eliminates concerns about deadlocks.
+
+Event Loop: Node.js features an event loop as a core runtime construct. It automatically enters the event loop after executing the input script and exits when there are no more callbacks to perform. This event loop enables Node.js's asynchronous and non-blocking behavior.
+
+HTTP in Node.js: Node.js treats HTTP as a first-class citizen, making it suitable for building web libraries or frameworks that prioritize streaming and low latency.
+
+Utilizing Multiple Cores: Although Node.js doesn't use threads in the traditional sense, it supports leveraging multiple CPU cores through features like child processes and the cluster module, enabling load balancing and utilizing modern, multi-core CPUs effectively.
+
+ECMAScript 2015 and Beyond: Node.js is built on modern versions of the V8 JavaScript engine, ensuring timely support for new features from the ECMAScript specification. This provides better performance and stability.
+
+ECMAScript Feature Groups: ECMAScript 2015 (ES6) features are categorized into shipping, staged, and in-progress groups, each requiring different levels of activation. The availability of these features in Node.js depends on the language specification and the Node.js team's decisions.
+
+Node.js Feature Availability: The notes mention a website, node.green, which serves as a resource for information on supported ECMAScript features in various Node.js versions. This resource helps developers understand which JavaScript features are available in their Node.js environment
+--- END OF DAY 2
+
+ DAY 3: CLIENT SIDE GAME DEVELOPMENT 
+Concurrency Model: Node.js uses a non-blocking, event-driven concurrency model, which is different from the traditional thread-based model. This design simplifies the development of scalable systems and eliminates concerns about deadlocks.
+
+Event Loop: Node.js features an event loop as a core runtime construct. It automatically enters the event loop after executing the input script and exits when there are no more callbacks to perform. This event loop enables Node.js's asynchronous and non-blocking behavior.
+
+HTTP in Node.js: Node.js treats HTTP as a first-class citizen, making it suitable for building web libraries or frameworks that prioritize streaming and low latency.
+
+Utilizing Multiple Cores: Although Node.js doesn't use threads in the traditional sense, it supports leveraging multiple CPU cores through features like child processes and the cluster module, enabling load balancing and utilizing modern, multi-core CPUs effectively.
+
+ECMAScript 2015 and Beyond: Node.js is built on modern versions of the V8 JavaScript engine, ensuring timely support for new features from the ECMAScript specification. This provides better performance and stability.
+
+ECMAScript Feature Groups: ECMAScript 2015 (ES6) features are categorized into shipping, staged, and in-progress groups, each requiring different levels of activation. The availability of these features in Node.js depends on the language specification and the Node.js team's decisions.
+
+Node.js Feature Availability: The notes mention a website, node.green, which serves as a resource for information on supported ECMAScript features in various Node.js versions. This resource helps developers understand which JavaScript features are available in their Node.js environment.
+
+---END OF DAY 3
+ 
